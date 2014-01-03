@@ -14,10 +14,15 @@
 <script type="text/javascript">
 	var map = L.mapbox.map('map', 'bleege.gnbp044n');
 	var marker = L.marker(new L.LatLng(43.07798, -89.37086), {
-		icon: L.mapbox.marker.icon({'marker-color': 'CC0033'}),
+		icon: L.mapbox.marker.icon({'marker-color': 'CC0000'}),
 		draggable: true
 	});
 	marker.addTo(map);
+
+	marker.on('dragend', function(event) {
+		var loc = event.target.getLatLng();
+		alert(loc);
+	})
 
 </script>
 
