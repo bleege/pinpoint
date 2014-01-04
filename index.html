@@ -11,9 +11,24 @@
 
 <body>
 
-<div id='contentBox' class='note contain'>
-	<div class="pad2 fill-blue dark">
-		<p>Lat Lon: <span id="latLonText"></span></p>
+<div id='contentBox' class='note contain fill-light'>
+	<div class="pad2">
+		<table>
+			<thead>
+				<tr>
+					<th>Latitude</th>
+					<th>&nbsp;</th>
+					<th>Longitude</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td id="latText"></td>
+					<td>&nbsp;</td>
+					<td id="lonText"></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>
 
@@ -34,11 +49,8 @@
 	});
 
 	function displayLatLon(latLon) {
-		document.getElementById('latLonText').innerHTML = formatLatLon(latLon);
-	}
-
-	function formatLatLon(latLon) {
-		return latLon.lat + ", " + latLon.lng;
+		document.getElementById('latText').innerHTML = latLon.lat.toFixed(5);
+		document.getElementById('lonText').innerHTML = latLon.lng.toFixed(5);
 	}
 
 </script>
