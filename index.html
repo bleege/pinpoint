@@ -53,6 +53,22 @@
 		document.getElementById('lonText').innerHTML = latLon.lng.toFixed(5);
 	}
 
+	// Add Geocoder
+	var geocoder = L.mapbox.geocoderControl('bleege.gnbp044n');
+	map.addControl(geocoder);
+
+/*
+	geocoder.on('found', function(result) {
+		alert("Found - result = '" + result + "'");
+	})
+*/
+
+	// Move Marker On Double Click Of Map
+	map.on('dblclick', function(event) {
+		marker.setLatLng(event.latlng);
+		displayLatLon(marker.getLatLng());
+	});
+
 </script>
 
 </body>
