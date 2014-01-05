@@ -35,7 +35,9 @@
 <div id="map"></div>
 
 <script type="text/javascript">
-	var map = L.mapbox.map('map', 'bleege.gnbp044n');
+	var map = L.mapbox.map('map', 'bleege.gnbp044n', {
+		doubleClickZoom: false
+	});
 	var marker = L.marker(new L.LatLng(43.07471879831505, -89.3842077255249), {
 		icon: L.mapbox.marker.icon({'marker-color': 'CC0000'}),
 		draggable: true
