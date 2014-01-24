@@ -5,8 +5,8 @@
 	<title>Pin Point</title>
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<link href='https://www.mapbox.com/base/latest/base.css' rel='stylesheet' />
-	<link href='http://api.tiles.mapbox.com/mapbox.js/v1.5.2/mapbox.css' rel='stylesheet' />
-	<script src='http://api.tiles.mapbox.com/mapbox.js/v1.5.2/mapbox.js'></script>
+	<link href='http://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.css' rel='stylesheet' />
+	<script src='http://api.tiles.mapbox.com/mapbox.js/v1.6.1/mapbox.js'></script>
 </head>
 
 <body>
@@ -59,11 +59,20 @@
 	var geocoder = L.mapbox.geocoderControl('bleege.gnbp044n');
 	map.addControl(geocoder);
 
-/*
-	geocoder.on('found', function(result) {
-		alert("Found - result = '" + result + "'");
+	// Autoselect result.data.results[0][0] -> 3; get 0 and lat, lon
+	// Select result.data[0] = city; lat, lon
+	geocoder.on('select', function(result) {
+//		alert("Found - result = '" + result.data + "'");
+		marker.setLatLng(new L.LatLng(result.data[0].lat, result.data[0].lon))
+		displayLatLon(marker.getLatLng());
+	});
+
+	geocoder.on('autoselect', function(result) {
+//		alert("Found - result = '" + result.data + "'");
+		marker.setLatLng(new L.LatLng(result.data.results[0][0].lat, result.data.results[0][0].lon))
+		displayLatLon(marker.getLatLng());
 	})
-*/
+
 
 	// Move Marker On Double Click Of Map
 	map.on('dblclick', function(event) {
