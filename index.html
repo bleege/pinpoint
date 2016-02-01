@@ -41,6 +41,10 @@
 		doubleClickZoom: false
 	});
 	map.setView([43.07471879831505, -89.3842077255249], 14);
+	map.addControl(L.mapbox.geocoderControl('mapbox.places', {
+        autocomplete: true
+    }));
+
 	var marker = L.marker(new L.LatLng(43.07471879831505, -89.3842077255249), {
 		icon: L.mapbox.marker.icon({'marker-color': 'CC0000'}),
 		draggable: true
@@ -57,25 +61,6 @@
 		document.getElementById('latText').innerHTML = latLon.lat.toFixed(5);
 		document.getElementById('lonText').innerHTML = latLon.lng.toFixed(5);
 	}
-
-	// Add Geocoder
-	var geocoder = L.mapbox.geocoderControl('bleege.gnbp044n');
-	map.addControl(geocoder);
-
-	// Autoselect result.data.results[0][0] -> 3; get 0 and lat, lon
-	// Select result.data[0] = city; lat, lon
-	geocoder.on('select', function(result) {
-//		alert("Found - result = '" + result.data + "'");
-		marker.setLatLng(new L.LatLng(result.data[0].lat, result.data[0].lon))
-		displayLatLon(marker.getLatLng());
-	});
-
-	geocoder.on('autoselect', function(result) {
-//		alert("Found - result = '" + result.data + "'");
-		marker.setLatLng(new L.LatLng(result.data.results[0][0].lat, result.data.results[0][0].lon))
-		displayLatLon(marker.getLatLng());
-	})
-
 
 	// Move Marker On Double Click Of Map
 	map.on('dblclick', function(event) {
