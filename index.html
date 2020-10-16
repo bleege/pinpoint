@@ -49,12 +49,16 @@
             .setLngLat([-89.3842077255249, 43.07471879831505])
             .setDraggable(true)
             .addTo(map);
-
         displayLonLat(marker.getLngLat());
+        marker.on('dragend', onDragEnd);
 
-        function displayLonLat(latLon) {
-            document.getElementById('latText').innerHTML = latLon.lat.toFixed(5);
-            document.getElementById('lonText').innerHTML = latLon.lng.toFixed(5);
+        function onDragEnd() {
+            displayLonLat(marker.getLngLat())
+        }
+
+        function displayLonLat(lonLat) {
+            document.getElementById('latText').innerHTML = lonLat.lat.toFixed(5);
+            document.getElementById('lonText').innerHTML = lonLat.lng.toFixed(5);
         }
 
         /*
