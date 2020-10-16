@@ -44,6 +44,19 @@
             zoom: 14
         });
 
+
+        var marker = new mapboxgl.Marker()
+            .setLngLat([-89.3842077255249, 43.07471879831505])
+            .setDraggable(true)
+            .addTo(map);
+
+        displayLonLat(marker.getLngLat());
+
+        function displayLonLat(latLon) {
+            document.getElementById('latText').innerHTML = latLon.lat.toFixed(5);
+            document.getElementById('lonText').innerHTML = latLon.lng.toFixed(5);
+        }
+
         /*
                 L.mapbox.accessToken = "pk.eyJ1IjoiYmxlZWdlIiwiYSI6ImNpazM5eHhxcjAzZ291Z20wcHZhMnludXoifQ.kDBAYabGsDdxtW_C7OH4Zw";
 
