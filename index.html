@@ -41,11 +41,13 @@
             container: 'map',
             style: 'mapbox://styles/mapbox/outdoors-v11',
             center: [-89.3842077255249, 43.07471879831505], // starting position [lng, lat]
-            zoom: 14
+            zoom: 14,
+            doubleClickZoom: false
         });
 
-
-        var marker = new mapboxgl.Marker()
+        var marker = new mapboxgl.Marker({
+                color: '#CC0000'
+            })
             .setLngLat([-89.3842077255249, 43.07471879831505])
             .setDraggable(true)
             .addTo(map);
@@ -61,41 +63,17 @@
             document.getElementById('lonText').innerHTML = lonLat.lng.toFixed(5);
         }
 
-        /*
-                L.mapbox.accessToken = "pk.eyJ1IjoiYmxlZWdlIiwiYSI6ImNpazM5eHhxcjAzZ291Z20wcHZhMnludXoifQ.kDBAYabGsDdxtW_C7OH4Zw";
+        // Move Marker On Double Click Of Map
+        map.on('dblclick', function(e) {
+            var lonLat = new mapboxgl.LngLat(e.lngLat.lng, e.lngLat.lat)
+            marker.setLngLat(lonLat)
+            displayLonLat(marker.getLngLat())
+        });
 
-                var map = L.mapbox.map('map', 'mapbox.streets', {
-                    doubleClickZoom: false
-                });
-                map.setView([43.07471879831505, -89.3842077255249], 14);
+        /*
                 map.addControl(L.mapbox.geocoderControl('mapbox.places', {
                     autocomplete: true
                 }));
-
-                var marker = L.marker(new L.LatLng(43.07471879831505, -89.3842077255249), {
-                    icon: L.mapbox.marker.icon({
-                        'marker-color': 'CC0000'
-                    }),
-                    draggable: true
-                });
-                marker.addTo(map);
-                displayLatLon(marker.getLatLng());
-
-                marker.on('dragend', function(event) {
-                    var loc = event.target.getLatLng();
-                    displayLatLon(loc);
-                });
-
-                function displayLatLon(latLon) {
-                    document.getElementById('latText').innerHTML = latLon.lat.toFixed(5);
-                    document.getElementById('lonText').innerHTML = latLon.lng.toFixed(5);
-                }
-
-                // Move Marker On Double Click Of Map
-                map.on('dblclick', function(event) {
-                    marker.setLatLng(event.latlng);
-                    displayLatLon(marker.getLatLng());
-                });
         */
     </script>
 
